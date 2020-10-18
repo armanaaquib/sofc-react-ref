@@ -1,7 +1,22 @@
 import React from 'react';
-import HomePage from './HomePage';
-import QuestionPage from './QuestionPage';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-const App = () => <QuestionPage />;
+import HomePage from './pages/HomePage';
+import QuestionPage from './pages/QuestionPage';
+
+import './App.css';
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route path="/question/:questionId">
+        <QuestionPage />
+      </Route>
+      <Route path="/">
+        <HomePage />
+      </Route>
+    </Switch>
+  </Router>
+);
 
 export default App;
