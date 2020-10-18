@@ -10,8 +10,8 @@ const useStyles = createUseStyles({
     'font-size': 18,
     backgroundColor: '#c9f1fd',
     marginRight: '0.5rem',
-    padding: '0.3rem',
-    'border-radius': 1,
+    padding: '0.2rem',
+    'border-radius': 3,
   },
 });
 
