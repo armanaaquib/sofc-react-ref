@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
@@ -27,6 +28,14 @@ const Tags = ({ tags }) => {
       ))}
     </div>
   );
+};
+
+Tags.prototype = {
+  tags: PropTypes.array,
+};
+
+Tags.defaultProps = {
+  tags: [],
 };
 
 export default Tags;

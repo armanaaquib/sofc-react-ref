@@ -4,6 +4,8 @@ import Moment from 'react-moment';
 
 import Tags from './Tags.jsx';
 
+import api from '../api';
+
 const useStyles = createUseStyles({
   questionCards: {
     overflow: 'scroll',
@@ -29,7 +31,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const QuestionTitle = ({ children, questionId }) => (
+export const QuestionTitle = ({ children, questionId }) => (
   <a
     href={`/question/${questionId}`}
     style={{ textDecoration: 'none', color: 'black' }}
@@ -38,7 +40,7 @@ const QuestionTitle = ({ children, questionId }) => (
   </a>
 );
 
-const QuestionCard = (props) => {
+export const QuestionCard = (props) => {
   const classes = useStyles();
 
   return (
@@ -60,23 +62,19 @@ const QuestionCard = (props) => {
   );
 };
 
-const QuestionCards = () => {
-  const [questions, setQuestions] = useState(null);
+export const QuestionCards = () => {
+  const [questions, setQuestions] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
-    fetch('/api/question/')
-      .then((res) => res.json())
-      .then(setQuestions);
+    api.getAllQuestions().then(setQuestions);
   }, []);
 
   return (
     <div className={classes.questionCards}>
-      {questions
-        ? questions.map((question) => (
-            <QuestionCard key={question.id} {...question} />
-          ))
-        : null}
+      {questions.map((question) => (
+        <QuestionCard key={question.id} {...question} />
+      ))}
     </div>
   );
 };
